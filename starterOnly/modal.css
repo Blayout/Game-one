@@ -37,6 +37,7 @@ img {
 .header-logo {
     float: left;
 }
+
 .main-navbar {
     float: right;
 }
@@ -68,38 +69,6 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -478,7 +447,54 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/**********MEDIAQUERIES***************/
+
+
+@media screen and (max-width: 1140px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .hero-content .hero-headline {
+    font-size: 4.8rem;
+  }
+
+ 
+
+  .hero-img img {
+    object-fit: cover;
+  }
+}
+
 @media screen and (max-width: 800px) {
+
+  
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -486,21 +502,29 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0;
+    padding-right: 12%;
   }
+
+  
   .hero-content::after {
     content: unset;
   }
   .hero-content .btn-signup {
     display: none;
   }
-  .hero-headline {
-    font-size: 4.5rem;
-    white-space: normal;
+  .hero-content p {
+    font-size: 1.5rem;
+    
   }
+  .hero-content h1 {
+    font-size: 3rem !important;
+   
+  }
+  
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+  
   }
   .hero-img img {
     border-radius: 10px;
@@ -517,13 +541,65 @@ footer {
   }
 }
 
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
+@media screen and (max-width: 768px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+
   }
-  to {
-    opacity: 1;
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  .hero-content {
+    padding: 0;
+  }
+  .hero-content p {
+    font-size: 1.5rem;
+    
+  }
+  .hero-content h1 {
+    font-size: 3rem !important;
+   
   }
 }
+
+
+
+ @media (max-width: 540px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .header-logo img {
+    width: 250px;
+    height: auto;
+  }
+
+  .hero-content {
+    padding: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2.4rem !important;
+    
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+    width: 80%;
+  }
+
+
+} 
 

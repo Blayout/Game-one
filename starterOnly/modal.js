@@ -44,7 +44,7 @@ function validate() {
 
   if (firstName.trim() === "" || firstName.length < 2) {
     alert("Veuillez entrer un prénom valide (minimum 2 caractères).");
-    return false;
+    return false;   
   }
 
   if (lastName.trim() === "" || lastName.length < 2) {
