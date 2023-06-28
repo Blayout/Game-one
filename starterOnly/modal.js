@@ -112,7 +112,7 @@ window.addEventListener("DOMContentLoaded", function () {
       return false;
     }
 
-    console.log('Tous les champs sont validés, on affiche le message de remerciement');
+    
 
     closeModal();
 
