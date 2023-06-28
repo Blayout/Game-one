@@ -1,80 +1,198 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+window.addEventListener("DOMContentLoaded", function () {
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
-
-
-// close modal event
-const modalClose = document.getElementById("close-modal");
-modalClose.addEventListener("click", closeModal);
-
-
-function closeModal() {
-  modalbg.style.display = "none";
-}
-
-
-
-function validate() {
-
-  const firstName = document.getElementById("first").value;
-  const lastName = document.getElementById("last").value;
-  const email = document.getElementById("email").value;
-  const quantity = document.getElementById("quantity").value;
-  const location = document.querySelector("input[name='location']:checked");
-  const checkbox1 = document.getElementById("checkbox1");
-
-
-  if (firstName.trim() === "" || firstName.length < 2) {
-    alert("Veuillez entrer un prénom valide (minimum 2 caractères).");
-    return false;   
+  function editNav() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
   }
 
-  if (lastName.trim() === "" || lastName.length < 2) {
-    alert("Veuillez entrer un nom valide (minimum 2 caractères).");
-    return false;
+  // DOM Elements
+  const modalbg = document.querySelector(".bground");
+  const modalBtn = document.querySelectorAll(".modal-btn");
+  //const formData = document.querySelectorAll(".formData");
+  //const form = document.querySelector("form");
+
+  // launch modal event
+  modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+  // launch modal form
+  function launchModal() {
+    realTimeValidation();
+    modalbg.style.display = "block";
   }
 
-  if (email.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    alert("Veuillez entrer une adresse email valide.");
-    return false;
+  // close modal event
+  const modalClose = document.getElementById("close-modal");
+  modalClose.addEventListener("click", closeModal);
+
+  function closeModal() {
+    modalbg.style.display = "none";
   }
 
-  if (quantity.trim() === "" || isNaN(quantity)) {
-    alert("Veuillez entrer une valeur numérique pour le nombre de concours.");
-    return false;
+  const btnSubmit = document.querySelector(".btn-submit");
+
+  btnSubmit.addEventListener("click", function (event) {
+    event.preventDefault();
+    return validate();
+  });
+
+  const firstNameInput = document.querySelector("#first");
+  const lastNameInput = document.querySelector("#last");
+  const emailInput = document.querySelector("#email");
+  const quantityInput = document.querySelector("#quantity");
+  const locationInputs = document.querySelectorAll('input[name="location"]');
+  const cguInput = document.querySelector('input[name="checkbox1"]');
+
+  const firstNameError = document.getElementById("firstname-error");
+  const lastNameError = document.getElementById("lastname-error");
+  const emailError = document.getElementById("email-error");
+  const quantityError = document.getElementById("quantity-error");
+  const locationError = document.getElementById("location-error");
+  const cguError = document.getElementById("cgu-error");
+
+  function validate() {
+
+    var firstNameInputValue,
+      lastNameInputValue,
+      emailInputValue,
+      quantityInputValue,
+      quantityInputValueParsed,
+      locationInput,
+      cguInputChecked;
+
+    firstNameInputValue = firstNameInput.value;
+    if (!firstNameInputValue.trim() === "" || firstNameInputValue.length >= 2) {
+      firstNameError.style.display = "none";
+    } else {
+      firstNameError.style.display = "block";
+      return false;
+    }
+
+    lastNameInputValue = lastNameInput.value;
+    if (!lastNameInputValue.trim() === "" || lastNameInputValue.length >= 2) {
+      lastNameError.style.display = "none";
+    } else {
+      lastNameError.style.display = "block";
+      return false;
+    }
+
+    emailInputValue = emailInput.value;
+    if (!emailInputValue.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue)) {
+      emailError.style.display = "none";
+    } else {
+      emailError.style.display = "block";
+      return false;
+    }
+
+    quantityInputValue = quantityInput.value;
+    quantityInputValueParsed = parseInt(quantityInputValue);
+    if (quantityInputValue.trim() !== "" || !isNaN(quantityInputValueParsed)) {
+      quantityError.style.display = "none";
+    } else {
+      quantityError.style.display = "block";
+      return false;
+    }
+
+    locationInput = document.querySelector('input[name="location"]:checked');
+    if (locationInput) {
+      locationError.style.display = "none";
+    } else {
+      locationError.style.display = "block";
+      return false;
+    }
+
+    cguInputChecked = document.querySelector('input[name="checkbox1"]:checked');
+    if (cguInputChecked) {
+      cguError.style.display = "none";
+    } else {
+      cguError.style.display = "block";
+      return false;
+    }
+
+    console.log('Tous les champs sont validés, on affiche le message de remerciement');
+
+    closeModal();
+
+    /* ICI LE MESSAGE DE REMERCIEMENT */
+    //form.submit();
+
+    return true;
+
   }
 
-  if (!location) {
-    alert("Veuillez sélectionner un tournoi.");
-    return false;
+  function realTimeValidation() {
+
+    var quantityInputValue,
+      quantityInputValueParsed,
+      locationInput,
+      cguInputChecked;
+
+    firstNameInput.addEventListener("input", function () {
+      var firstNameInputValue = firstNameInput.value;
+      if (!firstNameInputValue.trim() === "" || firstNameInputValue.length >= 2) {
+        firstNameError.style.display = "none";
+      } else {
+        firstNameError.style.display = "block";
+        return false;
+      }
+    }, false);
+
+    lastNameInput.addEventListener("input", function () {
+      var lastNameInputValue = lastNameInput.value;
+      if (!lastNameInputValue.trim() === "" || lastNameInputValue.length >= 2) {
+        lastNameError.style.display = "none";
+      } else {
+        lastNameError.style.display = "block";
+        return false;
+      }
+    }, false);
+
+    emailInput.addEventListener("input", function () {
+      var emailInputValue = emailInput.value;
+      if (!emailInputValue.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue)) {
+        emailError.style.display = "none";
+      } else {
+        emailError.style.display = "block";
+        return false;
+      }
+    }, false);
+
+    quantityInput.addEventListener("input", function () {
+      quantityInputValue = quantityInput.value;
+      quantityInputValueParsed = parseInt(quantityInputValue);
+      if (quantityInputValue.trim() !== "" && !isNaN(quantityInputValueParsed)) {
+        quantityError.style.display = "none";
+      } else {
+        quantityError.style.display = "block";
+        return false;
+      }
+    }, false);
+
+    locationInputs.forEach(function (item) {
+      item.addEventListener("input", function () {
+        locationInput = document.querySelector('input[name="location"]:checked');
+        if (locationInput) {
+          locationError.style.display = "none";
+        } else {
+          locationError.style.display = "block";
+          return false;
+        }
+      }, false);
+    });
+
+    cguInput.addEventListener("input", function () {
+      cguInputChecked = document.querySelector('input[name="checkbox1"]:checked');
+      if (cguInputChecked) {
+        cguError.style.display = "none";
+      } else {
+        cguError.style.display = "block";
+        return false;
+      }
+    }, false);
+
   }
 
-  if (!checkbox1.checked) {
-    alert("Veuillez accepter les conditions d'utilisation.");
-    return false;
-  }
-
-  return true;
-}
-
-
-
-
+});
