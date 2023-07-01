@@ -8,36 +8,44 @@ window.addEventListener("DOMContentLoaded", function () {
       x.className = "topnav";
     }
   }
-
+  
   // DOM Elements
   const modalbg = document.querySelector(".bground");
   const modalBtn = document.querySelectorAll(".modal-btn");
-  //const formData = document.querySelectorAll(".formData");
-  //const form = document.querySelector("form");
-
+  const formData = document.querySelectorAll(".formData");
+  
   // launch modal event
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
+  
   // launch modal form
   function launchModal() {
-    realTimeValidation();
     modalbg.style.display = "block";
   }
-
+  
+  
+  
   // close modal event
   const modalClose = document.getElementById("close-modal");
   modalClose.addEventListener("click", closeModal);
-
+  
+  // close modal form
   function closeModal() {
     modalbg.style.display = "none";
   }
+ 
 
   const btnSubmit = document.querySelector(".btn-submit");
 
   btnSubmit.addEventListener("click", function (event) {
-    event.preventDefault();
-    return validate();
-  });
+  event.preventDefault();
+  if (validate()) {
+   
+    const form = document.querySelector("form");
+    form.submit();
+   closeModal();
+  }
+});
+
 
   const firstNameInput = document.querySelector("#first");
   const lastNameInput = document.querySelector("#last");
@@ -64,65 +72,57 @@ window.addEventListener("DOMContentLoaded", function () {
       cguInputChecked;
 
     firstNameInputValue = firstNameInput.value;
-    if (!firstNameInputValue.trim() === "" || firstNameInputValue.length >= 2) {
-      firstNameError.style.display = "none";
-    } else {
+    if (firstNameInputValue.trim() === "" || firstNameInputValue.length < 2) {
       firstNameError.style.display = "block";
-      return false;
+    } else if (!firstNameInputValue.trim() === "" || firstNameInputValue.length >= 2){
+      firstNameError.style.display = "none";
+      
     }
 
     lastNameInputValue = lastNameInput.value;
-    if (!lastNameInputValue.trim() === "" || lastNameInputValue.length >= 2) {
-      lastNameError.style.display = "none";
-    } else {
+    if (lastNameInputValue.trim() === "" || lastNameInputValue.length < 2) {
       lastNameError.style.display = "block";
-      return false;
+    } else if (!lastNameInputValue.trim() === "" || lastNameInputValue.length >= 2){
+      lastNameError.style.display = "none";
+     
     }
 
     emailInputValue = emailInput.value;
-    if (!emailInputValue.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue)) {
-      emailError.style.display = "none";
-    } else {
+    if (!emailInputValue.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue)) {
       emailError.style.display = "block";
-      return false;
+    } else if (emailInputValue.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue)) {
+      emailError.style.display = "none";
+      
     }
 
     quantityInputValue = quantityInput.value;
     quantityInputValueParsed = parseInt(quantityInputValue);
-    if (quantityInputValue.trim() !== "" || !isNaN(quantityInputValueParsed)) {
-      quantityError.style.display = "none";
-    } else {
+    if (quantityInputValue.trim() == "" || isNaN(quantityInputValueParsed)) {
       quantityError.style.display = "block";
-      return false;
+    } else if (!quantityInputValue.trim() == "" || !isNaN(quantityInputValueParsed)){
+      quantityError.style.display = "none";
     }
 
     locationInput = document.querySelector('input[name="location"]:checked');
-    if (locationInput) {
-      locationError.style.display = "none";
-    } else {
+    if (!locationInput) {
       locationError.style.display = "block";
-      return false;
+    } else {
+      locationError.style.display = "none";
+      
     }
 
     cguInputChecked = document.querySelector('input[name="checkbox1"]:checked');
-    if (cguInputChecked) {
-      cguError.style.display = "none";
-    } else {
+    if (!cguInputChecked) {
       cguError.style.display = "block";
-      return false;
-    }
-
-    
-
-    closeModal();
-
-    /* ICI LE MESSAGE DE REMERCIEMENT */
-    //form.submit();
+    } else {
+      cguError.style.display = "none";
+    } 
 
     return true;
 
   }
-
+ 
+  /*
   function realTimeValidation() {
 
     var quantityInputValue,
@@ -194,5 +194,17 @@ window.addEventListener("DOMContentLoaded", function () {
     }, false);
 
   }
+ */
 
+  /*function firstnameValidation (){   
+    var firstNameInputValue = firstNameInput.value;   
+    if (!firstNameInputValue.trim() === "" || firstNameInputValue.length >= 2) {     
+      firstNameError.style.display = "none";   
+    } 
+      else {     
+        firstNameError.style.display = "block";     
+        return false;   
+    }*/
 });
+
+
