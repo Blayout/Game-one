@@ -9,6 +9,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  /*************************MODAL******************************/
   // DOM Elements
   const modalbg = document.querySelector(".bground");
   const modalBtn = document.querySelectorAll(".modal-btn");
@@ -34,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
 
-/*
+/*************************MODALTHANKS******************************/
   const modalThanksBg = document.querySelector(".thanks-modal");
   const modalThanksBtn = document.querySelectorAll(".btn-submit");
 
@@ -48,10 +49,8 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
 
-
-
   // close modal event
-  const modalCloseThanks = document.getElementById("thanks-btn");
+  const modalCloseThanks = document.querySelector(".thanks-modal");
   modalCloseThanks.addEventListener("click", closeModalThx);
 
   // close modal form
@@ -59,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function () {
     modalCloseThanks.style.display = "none";
   }
 
-*/
+
 
   
   const btnSubmit = document.querySelector(".btn-submit");
@@ -93,6 +92,7 @@ window.addEventListener("DOMContentLoaded", function () {
       quantityInputValueParsed,
       locationInputChecked,
       cguInputChecked;
+      hasErrors = false; 
 
     firstNameInputValue = firstNameInput.value;
     lastNameInputValue = lastNameInput.value;
@@ -102,7 +102,6 @@ window.addEventListener("DOMContentLoaded", function () {
     locationInputChecked = document.querySelector('input[name="location"]:checked');
     cguInputChecked = document.querySelector('input[name="checkbox1"]:checked');
 
-    var hasErrors = false; 
 
     if (firstNameInputValue.trim() === "" || firstNameInputValue.length < 2) {
         firstNameError.style.display = "block";
@@ -144,15 +143,9 @@ window.addEventListener("DOMContentLoaded", function () {
         hasErrors = true;
     } else {
         cguError.style.display = "none";
+        closeModal()
     }
 
-    if (hasErrors) {
-        console.log('Au moins un champ n\'est pas validé');
-    } else {
-        console.log('Tous les champs sont validés');
-        closeModal();
-        console.log('Modal fermée');
-    }
 
   }
 

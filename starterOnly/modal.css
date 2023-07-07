@@ -192,6 +192,11 @@ label[for="quantity"] {
 }
 
 .thanks-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
@@ -203,8 +208,22 @@ label[for="quantity"] {
   position: relative;
   color: #fff;
   padding-top: 10px;
+  height: 850px;
 }
 
+.thanks-content p {
+  font-weight: normal;
+  font-size: 36px;
+  text-align: center;
+}
+
+.thanks-content:last-child {
+  justify-content: space-between;
+
+}
+#thanks-btn{
+  margin-bottom: 20px;
+}
 .formData {
   padding-bottom: 15px;
 }
