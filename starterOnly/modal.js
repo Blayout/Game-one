@@ -31,6 +31,37 @@ window.addEventListener("DOMContentLoaded", function () {
     modalbg.style.display = "none";
   }
 
+
+
+
+/*
+  const modalThanksBg = document.querySelector(".thanks-modal");
+  const modalThanksBtn = document.querySelectorAll(".btn-submit");
+
+
+  // launch modal event
+  modalThanksBtn.forEach((btn) => btn.addEventListener("click", launchModalThanks));
+
+  // launch modal form
+  function launchModalThanks() {
+    modalThanksBg.style.display = "block";
+  }
+
+
+
+
+  // close modal event
+  const modalCloseThanks = document.getElementById("thanks-btn");
+  modalCloseThanks.addEventListener("click", closeModalThx);
+
+  // close modal form
+  function closeModalThx() {
+    modalCloseThanks.style.display = "none";
+  }
+
+*/
+
+  
   const btnSubmit = document.querySelector(".btn-submit");
 
   btnSubmit.addEventListener("click", function (event) {
@@ -71,29 +102,56 @@ window.addEventListener("DOMContentLoaded", function () {
     locationInputChecked = document.querySelector('input[name="location"]:checked');
     cguInputChecked = document.querySelector('input[name="checkbox1"]:checked');
 
-    if ((firstNameInputValue.trim() === "" || firstNameInputValue.length < 2)
-      || (lastNameInputValue.trim() === "" || lastNameInputValue.length < 2)
-      || (!emailInputValue.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue))
-      || (quantityInputValue.trim() == "" || isNaN(quantityInputValueParsed))
-      || (!locationInputChecked)
-      || (!cguInputChecked)) {
-      firstNameError.style.display = "block";
-      lastNameError.style.display = "block";
-      emailError.style.display = "block";
-      quantityError.style.display = "block";
-      locationError.style.display = "block";
-      cguError.style.display = "block";
-      console.log('Au moins un champ n\'est pas validé');
+    var hasErrors = false; 
+
+    if (firstNameInputValue.trim() === "" || firstNameInputValue.length < 2) {
+        firstNameError.style.display = "block";
+        hasErrors = true; 
     } else {
-      firstNameError.style.display = "none";
-      lastNameError.style.display = "none";
-      emailError.style.display = "none";
-      quantityError.style.display = "none";
-      locationError.style.display = "none";
-      cguError.style.display = "none";
-      console.log('Tous les champs sont validés');
-      closeModal();
-      console.log('Modal fermée');
+        firstNameError.style.display = "none";
+    }
+
+    if (lastNameInputValue.trim() === "" || lastNameInputValue.length < 2) {
+        lastNameError.style.display = "block";
+        hasErrors = true;
+    } else {
+        lastNameError.style.display = "none";
+    }
+
+    if (!emailInputValue.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue)) {
+        emailError.style.display = "block";
+        hasErrors = true;
+    } else {
+        emailError.style.display = "none";
+    }
+
+    if (quantityInputValue.trim() == "" || isNaN(quantityInputValueParsed)) {
+        quantityError.style.display = "block";
+        hasErrors = true;
+    } else {
+        quantityError.style.display = "none";
+    }
+
+    if (!locationInputChecked) {
+        locationError.style.display = "block";
+        hasErrors = true;
+    } else {
+        locationError.style.display = "none";
+    }
+
+    if (!cguInputChecked) {
+        cguError.style.display = "block";
+        hasErrors = true;
+    } else {
+        cguError.style.display = "none";
+    }
+
+    if (hasErrors) {
+        console.log('Au moins un champ n\'est pas validé');
+    } else {
+        console.log('Tous les champs sont validés');
+        closeModal();
+        console.log('Modal fermée');
     }
 
   }
