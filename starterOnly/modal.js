@@ -1,19 +1,20 @@
-window.addEventListener("DOMContentLoaded", function () {
-
-  function editNav() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
+function editNav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
   }
+}
+
+
+window.addEventListener("DOMContentLoaded", function () {
 
   /*************************MODAL******************************/
   // DOM Elements
   const modalbg = document.querySelector(".bground");
   const modalBtn = document.querySelectorAll(".modal-btn");
-  //const formData = document.querySelectorAll(".formData");
+  const formData = document.querySelectorAll(".formData");
 
   // launch modal event
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -36,12 +37,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
 /*************************MODALTHANKS******************************/
+
   const modalThanksBg = document.querySelector(".thanks-modal");
-  const modalThanksBtn = document.querySelectorAll(".btn-submit");
 
 
   // launch modal event
-  modalThanksBtn.forEach((btn) => btn.addEventListener("click", launchModalThanks));
 
   // launch modal form
   function launchModalThanks() {
@@ -143,97 +143,19 @@ window.addEventListener("DOMContentLoaded", function () {
         hasErrors = true;
     } else {
         cguError.style.display = "none";
-        closeModal()
+        
     }
-
-
+    
+    if (hasErrors===false) {
+      launchModalThanks()
+      closeModal()
+    }
+    
+    
+    
+    
   }
 
-  /*
-    realTimeValidation();
-  
-    function realTimeValidation() {
-  
-      var quantityInputValue,
-        quantityInputValueParsed,
-        locationInput,
-        cguInputChecked;
-  
-      firstNameInput.addEventListener("input", function () {
-        var firstNameInputValue = firstNameInput.value;
-        if (!firstNameInputValue.trim() === "" || firstNameInputValue.length >= 2) {
-          firstNameError.style.display = "none";
-        } else {
-          firstNameError.style.display = "block";
-          return false;
-        }
-      }, false);
-  
-      lastNameInput.addEventListener("input", function () {
-        var lastNameInputValue = lastNameInput.value;
-        if (!lastNameInputValue.trim() === "" || lastNameInputValue.length >= 2) {
-          lastNameError.style.display = "none";
-        } else {
-          lastNameError.style.display = "block";
-          return false;
-        }
-      }, false);
-  
-      emailInput.addEventListener("input", function () {
-        var emailInputValue = emailInput.value;
-        if (!emailInputValue.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInputValue)) {
-          emailError.style.display = "none";
-        } else {
-          emailError.style.display = "block";
-          return false;
-        }
-      }, false);
-  
-      quantityInput.addEventListener("input", function () {
-        quantityInputValue = quantityInput.value;
-        quantityInputValueParsed = parseInt(quantityInputValue);
-        if (quantityInputValue.trim() !== "" && !isNaN(quantityInputValueParsed)) {
-          quantityError.style.display = "none";
-        } else {
-          quantityError.style.display = "block";
-          return false;
-        }
-      }, false);
-  
-      locationInputs.forEach(function (item) {
-        item.addEventListener("input", function () {
-          locationInput = document.querySelector('input[name="location"]:checked');
-          if (locationInput) {
-            locationError.style.display = "none";
-          } else {
-            locationError.style.display = "block";
-            return false;
-          }
-        }, false);
-      });
-  
-      cguInput.addEventListener("input", function () {
-        cguInputChecked = document.querySelector('input[name="checkbox1"]:checked');
-        if (cguInputChecked) {
-          cguError.style.display = "none";
-        } else {
-          cguError.style.display = "block";
-          return false;
-        }
-      }, false);
-  
-    }
-  */
-
-  /*function firstnameValidation (){   
-    var firstNameInputValue = firstNameInput.value;   
-    if (!firstNameInputValue.trim() === "" || firstNameInputValue.length >= 2) {     
-      firstNameError.style.display = "none";   
-    } 
-      else {     
-        firstNameError.style.display = "block";     
-        return false;   
-    }*/
 });
 
 
