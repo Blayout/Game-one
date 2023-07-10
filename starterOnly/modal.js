@@ -7,7 +7,6 @@ function editNav() {
   }
 }
 
-
 window.addEventListener("DOMContentLoaded", function () {
 
   /*************************MODAL******************************/
