@@ -21,6 +21,8 @@ window.addEventListener("DOMContentLoaded", function () {
   // launch modal form
   function launchModal() {
     modalbg.style.display = "block";
+    document.body.classList.add('modal-open'); 
+
   }
 
   // close modal event
@@ -30,6 +32,8 @@ window.addEventListener("DOMContentLoaded", function () {
   // close modal form
   function closeModal() {
     modalbg.style.display = "none";
+    document.body.classList.remove('modal-open'); 
+
   }
 
 
@@ -154,6 +158,7 @@ window.addEventListener("DOMContentLoaded", function () {
     
     
   }
+
 
 });
 

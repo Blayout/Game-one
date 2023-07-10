@@ -84,6 +84,10 @@ main {
 
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 .modal-btn {
   font-size: 145%;
   background: #fe142f;
@@ -643,6 +647,10 @@ footer {
   .hero-content h1 {
     font-size: 3rem !important;
    
+  }
+
+  .content{
+    width: 75%;
   }
 }
 
